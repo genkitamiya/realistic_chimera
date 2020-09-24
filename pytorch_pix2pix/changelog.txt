@@ -1,0 +1,17 @@
+Log of changes to script filters
+
+Implementation of WGAN-gp
+
+1. pix2pix_model.py
+
+lines100-102: Call cal_gradient_penalty & backprop gradient penalty
+#wgan-gp
+self.loss_gp, gradients = networks.cal_gradient_penalty(self.netD,real_AB,fake_AB.detach(),self.device)
+self.loss_gp.backward(retain_graph=True)
+
+line105: Change loss function to integrate Wasserstein Dist
+(self.loss_D_real is negative)
+self.loss_D = self.loss_D_fake + self.loss_D_real + self.loss_gp
+
+line47: Add 'gp' to log gradient penalty
+self.loss_names = ['G_GAN', 'G_L1', 'D_real', 'D_fake', 'gp']
