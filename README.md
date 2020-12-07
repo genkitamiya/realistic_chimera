@@ -31,34 +31,41 @@ pip install requirements.txt
 ```
 ### 2. 前処理
 下記コマンド実行で学習用及び推論用画像の輪郭画像を用意。<br>
-画像は指定サイズの正方形に変換され（デフォルトは256）、輪郭抽出はauto canny法<sup>[3](#参考)</sup>を採用。
+画像は指定サイズの正方形に変換され（デフォルトは256）、輪郭抽出はauto canny法<sup>[3](#参考)</sup>を採用。<br>
+- 学習用データは格納ディレクトリをtrainとする
+- 推論用データは格納ディレクトリをtestとする
 ```
-python preprocess.py --input path/to/input/dir --output path/to/output/dir --size int
+python preprocess.py --input path/to/input/dir --output path/to/train_or_test/dir --size int
 ```
 
 ### 3. 学習
+下記コマンドを実行。<br>
 ```
-python train.py \
---dataroot ./datasets/chimera \
---name chimera_pix2pix \
---model pix2pix \
---direction BtoA \
+python train.py \ 
+--dataroot ./path/to/train \    #２で作成したtrainのパス
+--name name/for/model \         #任意の名前で問題ない
+--model pix2pix \               #今回はPix2Pixのみのため、固定
+--direction BtoA \              #preprocess.pyで作成する画像がBtoAのため、固定
 ```
+
 ## 4. キメラ生成（推論）
+下記コマンドを実行。<br>
 ```
 python test.py \
---dataroot ./datasets/chimera \
---direction BtoA \
---model pix2pix \
---name chimera_pix2pix
+--dataroot ./path/to/test \    #２で作成したtrainのパス
+--name name/of/model \         #使用するモデルの名前
+--model pix2pix \               #今回はPix2Pixのみのため、固定
+--direction BtoA \              #preprocess.pyで作成する画像がBtoAのため、固定
 ```
 
 ## 生成例
-学習用画像はライオン、山羊、蛇、犬、馬、鳥、魚の７種を合計957枚用意（Google Imagesからスクレイピング、無背景の物を優先）。生成例は以下の通り↓<br>
+学習用画像はライオン、山羊、蛇、犬、馬、鳥、魚の７種を合計957枚用意（Google Imagesからスクレイピング、無背景の物を優先）。エポックは800、損失関数はLeast Squareを使用。以下、生成例を抜粋↓<br>
 
 <img src='static/results.png' width=750><br>
 
 ## 課題
+- 輪郭の抽出精度が学習及び生成画像の質に直結する。ライオンのたてがみは線が多く抽出されてしまったため、キメラの頭が上手く生成できなかった要因と思われる。
+<img src='static/fail.png' width=300><br>
 
 ## 参考
 <sup>1</sup>https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix<br>
