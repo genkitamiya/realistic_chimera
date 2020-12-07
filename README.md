@@ -11,13 +11,13 @@ DIVE INTO CODE課題一覧　https://github.com/genkitamiya/diveintocode-ml<br>
 <img src='static/overview.png' align="right" width=300>
 キメラは様々な動物を組み合わせた生物である特性上、多様な動物をパーツごとに学習したGANは未知の生物も生成可能と考えた。多種の動物を用いることから、DCGANのように乱数からの生成では特徴が捉えきれずに学習が収束しない恐れがあるため、今回はラベル情報（教師あり）を使うconditional GANをモデルに採用した。中でも、対象物の輪郭から色付けを行えるPix2Pix<sup>[1](#参考)</sup>を採用。<br>
 <br>
-<img src='static/scheme1.png' align='center' width=500><br>
+<img src='static/scheme1.png' align='center' width=750><br>
 
 *pix2pix: UNET256の生成器とPatchGANの識別器との敵対ネットワーク*<br>
 <br>
 <br>
 推論はキメライラストから抽出した輪郭画像を学習済モデルに投入する。<br>
-<img src='static/scheme2.png' width=450><br>
+<img src='static/scheme2.png' width=750><br>
 
 ## 学習
 ### 1. 前処理
@@ -47,7 +47,7 @@ python test.py \
 ## 生成例
 学習用画像はライオン、山羊、蛇、犬、馬、鳥、魚の７種を合計957枚用意（Google Imagesからスクレイピング、無背景の物を優先）。生成例は以下の通り↓<br>
 
-<img src='static/results.png' width=500><br>
+<img src='static/results.png' width=750><br>
 
 ## 課題
 
