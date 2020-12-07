@@ -59,9 +59,21 @@ python test.py \
 ```
 
 ## 生成例
-学習用画像はライオン、山羊、蛇、犬、馬、鳥、魚の７種を合計957枚用意（Google Imagesからスクレイピング、無背景の物を優先）。エポックは800、損失関数はLeast Squareを使用。以下、生成例を抜粋↓<br>
+学習用画像はライオン、山羊、蛇、犬、馬、鳥、魚の７種を合計957枚用意（Google Imagesからスクレイピング、無背景の物を優先）。また、損失関数はLeast Square GAN (LSGAN)、Wasserstein GAN (WGAN)、Mode Seeking GAN (MSGAN)の３種を検証。<br>
+<br>
+以下に最も綺麗に生成したLSGANの画像集と、各損失関数の特徴を記載。<br>
 
 <img src='static/results.png' width=750><br>
+*LSGANの生成例（Epoch 800）*<br>
+<br>
+<img src='static/summary.png' width=750><br>
+*各損失関数の生成例と特徴*<br>
+<br>
+全ての生成画像は下記参照↓
+- [LSGAN epoch800](./results/LSGAN_256_All/epoch800/index.md)
+- [WGAN epoch400](./results/MSGAN/epoch400/index.md)
+- [MSGAN epoch400](./results/WGAN_256_NoBG/epoch400/index.md)
+
 
 ## 課題
 - 輪郭の抽出精度が学習及び生成画像の質に直結する。ライオンのたてがみは線が多く抽出されてしまったため、キメラの頭が上手く生成できなかった要因と思われる。
