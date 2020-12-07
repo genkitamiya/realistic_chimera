@@ -54,7 +54,7 @@ python train.py \
 その他オプション引数については、./options内のbase_options.pyとtest_options.pyを参照。
 ```
 python test.py \
---dataroot ./path/to/test \    #２で作成したtrainのパス
+--dataroot ./path/to/test \    #２で作成したtestのパス
 --name name/of/model \         #使用するモデルの名前
 --model pix2pix \              #今回はPix2Pixのみのため、固定
 --direction BtoA \             #preprocess.pyで作成する画像がBtoAのため、固定
