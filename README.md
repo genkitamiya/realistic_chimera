@@ -9,25 +9,34 @@ DIVE INTO CODE課題一覧　https://github.com/genkitamiya/diveintocode-ml<br>
 
 ## 概要
 <img src='static/overview.png' align="right" width=300>
+
 キメラは様々な動物を組み合わせた生物である特性上、多様な動物をパーツごとに学習したGANは未知の生物も生成可能と考えた。多種の動物を用いることから、DCGANのように乱数からの生成では特徴が捉えきれずに学習が収束しない恐れがあるため、今回はラベル情報（教師あり）を使うconditional GANをモデルに採用した。中でも、対象物の輪郭から色付けを行えるPix2Pix<sup>[1](#参考)</sup>を採用。<br>
 <br>
 <img src='static/scheme1.png' align='center' width=750><br>
-
-*pix2pix: UNET256の生成器とPatchGANの識別器との敵対ネットワーク*<br>
+*Pix2Pix: UNET256の生成器とPatchGANの識別器との敵対ネットワーク*<br>
 <br>
 <br>
-推論はキメライラストから抽出した輪郭画像を学習済モデルに投入する。<br>
 <img src='static/scheme2.png' width=750><br>
+*推論はキメライラストから抽出した輪郭画像を学習済モデルに投入する。*<br>
+
+## 開発環境
+- AWS DeepLearning AMI + G4 Instance (T4 NVIDIA GPU)
+- Python 3
+- PyTorch 1.2
 
 ## 学習
-### 1. 前処理
+### 1. 必要パッケージをインストール
+```
+pip install requirements.txt
+```
+### 2. 前処理
 下記コマンド実行で学習用及び推論用画像の輪郭画像を用意。<br>
 画像は指定サイズの正方形に変換され（デフォルトは256）、輪郭抽出はauto canny法<sup>[3](#参考)</sup>を採用。
 ```
 python preprocess.py --input path/to/input/dir --output path/to/output/dir --size int
 ```
 
-### 2. 学習
+### 3. 学習
 ```
 python train.py \
 --dataroot ./datasets/chimera \
@@ -35,7 +44,7 @@ python train.py \
 --model pix2pix \
 --direction BtoA \
 ```
-## 3. キメラ生成（推論）
+## 4. キメラ生成（推論）
 ```
 python test.py \
 --dataroot ./datasets/chimera \
