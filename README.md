@@ -44,9 +44,7 @@ python preprocess.py --input path/to/input/dir --output path/to/train_or_test/di
 ```
 python train.py \ 
 --dataroot ./path/to/train \    #２で作成したtrainのパス
---name name/for/model \         #任意の名前で問題ない
---model pix2pix \               #今回はPix2Pixのみのため、固定
---direction BtoA \              #preprocess.pyで作成する画像がBtoAのため、固定
+--name name/for/model           #任意の名前で問題ない
 ```
 
 ## 4. キメラ生成（推論）
@@ -55,9 +53,7 @@ python train.py \
 ```
 python test.py \
 --dataroot ./path/to/test \    #２で作成したtestのパス
---name name/of/model \         #使用するモデルの名前
---model pix2pix \              #今回はPix2Pixのみのため、固定
---direction BtoA \             #preprocess.pyで作成する画像がBtoAのため、固定
+--name name/of/model           #使用するモデルの名前
 ```
 
 ## 生成例
