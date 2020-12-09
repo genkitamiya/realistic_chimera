@@ -80,8 +80,10 @@ python test.py \
 ## 課題
 - 輪郭の抽出精度が学習及び生成画像の質に直結する。ライオンのたてがみは線が多く抽出されてしまったため、キメラの頭が上手く生成できなかった要因と思われる。<br>
 <img src='static/fail.png' width=300><br>
+- 今後はデータ拡張とHED輪郭抽出の効果を検証したい。<sup>[4](#参考)</sup>
 
 ## 参考
 <sup>1</sup>https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix<br>
 <sup>2</sup>https://www.pyimagesearch.com/2015/04/06/zero-parameter-automatic-canny-edge-detection-with-python-and-opencv/<br>
-<sup>3</sup>https://github.com/HelenMao/MSGAN
+<sup>3</sup>https://github.com/HelenMao/MSGAN<br>
+<sup>4</sup>https://medium.com/@pix2pix.datascience/investigating-the-impact-of-preprocessing-on-image-to-image-translation-a5273d49511e
